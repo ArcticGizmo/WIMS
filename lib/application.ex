@@ -8,14 +8,20 @@ defmodule Wims.Application do
       # Wims.Repo,
       WimsWeb.Telemetry,
       {Phoenix.PubSub, name: Wims.PubSub},
-      WimsWeb.Endpoint,
-      {WimsWeb.TCP.Server, []}
+      # WimsWeb.Endpoint
+      # {WimsWeb.TCP.Server, []}
+      # {WimsWeb.TCP.Server2, 4010},
+      # {DynamicSupervisor, strategy: :one_for_one, name: WimsWeb.TCP.ClientSupervisor}
     ]
 
     # WimsWeb.TCP.Server.accept(4010)
 
     opts = [strategy: :one_for_one, name: Wims.Supervisor]
-    Supervisor.start_link(children, opts)
+    ret = Supervisor.start_link(children, opts)
+
+    :ranch.start_listener(make_ref(), :ranch_tcp, [{:port, 4010}], WimsWeb.TCP.Protocol, [])
+
+    ret
   end
 
   def config_change(changed, _new, removed) do
