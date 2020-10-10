@@ -1,2 +1,2 @@
-# WIMS
-Where is my stuff - A configurable GPS data server
+# Wims
+Where is my stuff? - A configurable GPS data server
