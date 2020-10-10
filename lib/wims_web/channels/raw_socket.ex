@@ -1,5 +1,5 @@
-defmodule WimsWeb.UserSocket do
-  use Phoenix.Socket
+defmodule WimsWeb.RawSocket do
+  use WimsWeb.Socket.Raw
 
   @impl true
   def connect(_params, socket, _connect_info) do
