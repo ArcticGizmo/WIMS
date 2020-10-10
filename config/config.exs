@@ -1,5 +1,7 @@
 import Config
 
+config :elixir, ansi_enabled: true
+
 config :wims,
   ecto_repos: [Wims.Repo]
 
@@ -21,8 +23,13 @@ config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
+env = Mix.env()
+import_config "#{env}.exs"
 
 if File.exists?("config/config.secret.exs") do
   import_config "config.secret.exs"
+end
+
+if File.exists?("config/#{env}.secret.exs") do
+  import_config "#{env}.secret.exs"
 end
