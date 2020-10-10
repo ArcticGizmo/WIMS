@@ -9,9 +9,10 @@ defmodule Wims.Application do
       WimsWeb.Telemetry,
       {Phoenix.PubSub, name: Wims.PubSub},
       WimsWeb.Endpoint,
+      {WimsWeb.TCP.Server, []}
     ]
 
-    WimsWeb.TCP.Server.accept(4010)
+    # WimsWeb.TCP.Server.accept(4010)
 
     opts = [strategy: :one_for_one, name: Wims.Supervisor]
     Supervisor.start_link(children, opts)

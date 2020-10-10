@@ -5,6 +5,9 @@ config :elixir, ansi_enabled: true
 config :wims,
   ecto_repos: [Wims.Repo]
 
+config :wims, WimsWeb.TCP,
+  port: 4010
+
 # Configures the endpoint
 config :wims, WimsWeb.Endpoint,
   url: [host: "localhost"],
